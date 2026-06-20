@@ -9,12 +9,13 @@
 [![YOLOv8](https://img.shields.io/badge/Vision-YOLOv8-purple)](https://ultralytics.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 [![Invention](https://img.shields.io/badge/Original-Invention-gold)](docs/patent_concept.md)
+[![Live](https://img.shields.io/badge/Live-Website-brightgreen)](https://jyotheeswar012-max.github.io/swarm-park-guardian)
 [![Built by Jyotheeswar](https://img.shields.io/badge/Built%20by-A.%20Jyotheeswar%20Reddy-orange)](https://github.com/jyotheeswar012-max)
 
 > **My original invention.** A fleet of AI-powered drones that autonomously patrol, detect waste, trim grass, water plants, and clean water bodies in a park — coordinated by a central hub. Every season. Zero human intervention.
 
 **[🌍 Live Website →](https://jyotheeswar012-max.github.io/swarm-park-guardian)** &nbsp;|
-**[📊 Dashboard →](#)** &nbsp;|
+**[📊 Live Dashboard →](https://swarm-park-guardian.streamlit.app)** &nbsp;|
 **[📄 Patent Concept →](docs/patent_concept.md)**
 
 </div>
