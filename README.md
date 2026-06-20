@@ -8,40 +8,53 @@
 [![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-red?logo=streamlit)](https://streamlit.io)
 [![YOLOv8](https://img.shields.io/badge/Vision-YOLOv8-purple)](https://ultralytics.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-[![Built by Jyotheeswar](https://img.shields.io/badge/Built%20by-Jyotheeswar%20Reddy-orange)](https://github.com/jyotheeswar012-max)
+[![Invention](https://img.shields.io/badge/Original-Invention-gold)](docs/patent_concept.md)
+[![Built by Jyotheeswar](https://img.shields.io/badge/Built%20by-A.%20Jyotheeswar%20Reddy-orange)](https://github.com/jyotheeswar012-max)
 
-> A fully autonomous swarm of AI-powered drones that patrol, detect waste, trim grass, water plants, and clean water bodies in a park — coordinated by a central hub with real-time dashboard monitoring.
+> **My original invention.** A fleet of AI-powered drones that autonomously patrol, detect waste, trim grass, water plants, and clean water bodies in a park — coordinated by a central hub. Every season. Zero human intervention.
 
-**[Live Demo →](#)** | **[Architecture Docs →](docs/architecture.md)** | **[Patent Concept →](docs/patent_concept.md)**
+**[🌍 Live Website →](https://jyotheeswar012-max.github.io/swarm-park-guardian)** &nbsp;|
+**[📊 Dashboard →](#)** &nbsp;|
+**[📄 Patent Concept →](docs/patent_concept.md)**
 
 </div>
 
 ---
 
-## 🎯 What This Does
+## 💡 The Idea
 
-| Drone Role | Task |
-|---|---|
-| 🔍 Scout | Patrol zones, detect debris/grass/waste using YOLO vision |
-| 🧹 Cleaner | Collect debris, branches, and surface waste |
-| ✂️ Trimmer | Trim overgrown grass zones |
-| 💧 Waterer | Irrigate garden and lawn zones |
-| 🛡️ Patrol | Night-time perimeter monitoring |
+I came up with this idea as a solution to one real problem: **parks need constant maintenance but human labour is expensive, inconsistent, and unavailable at night.**
+
+My solution: a swarm of specialised drones that work as a single unit — scouting, cleaning, trimming, watering, and patrolling — all coordinated by a central hub that handles recharging and waste collection through a pipe system.
 
 ---
 
-## 🏗️ Architecture
+## 🤖 Drone Fleet
+
+| Drone | Role |
+|---|---|
+| 🔍 Scout | Patrols all zones, detects debris/grass/waste via YOLOv8 |
+| 🧹 Cleaner | Collects dust, branches, litter — pipes waste to hub |
+| ✂️ Trimmer | Detects and trims overgrown grass with precision |
+| 💧 Waterer | Irrigates gardens, cleans water body surfaces |
+| 🛡️ Patrol | Night-time perimeter + LED light-show formation |
+
+---
+
+## 🏗️ System Architecture
 
 ```
-Park Zones → Scout Drones (YOLOv8 detection)
-                    ↓
-            Swarm Controller (PSO task assignment)
-                    ↓
-        Cleaner / Trimmer / Waterer Drones
-                    ↓
-             Central Hub (collect, log, recharge)
-                    ↓
-          Streamlit Dashboard (real-time monitoring)
+Park Zones
+    ↓
+Scout Drones (YOLOv8 detection)
+    ↓
+Central Hub (PSO task assignment)
+    ↓
+Cleaner / Trimmer / Waterer Drones
+    ↓
+Hub (waste collection via pipes + solar recharge)
+    ↓
+Streamlit Dashboard (real-time monitoring)
 ```
 
 ---
@@ -57,34 +70,14 @@ streamlit run dashboard/app.py
 
 ---
 
-## 🧪 Run Tests
-
-```bash
-pytest tests/ -v
-```
-
----
-
-## 🛠️ Tech Stack
-
-- **Python 3.11** — core simulation logic
-- **YOLOv8** — object detection (debris, grass, water waste)
-- **PSO Algorithm** — path planning and task assignment
-- **Pygame** — 2D simulation visualizer
-- **Streamlit + Plotly** — live mission dashboard
-- **SQLite** — mission log storage
-- **Docker** — containerized deployment
-
----
-
 ## 🔬 Research & Patent
 
-This project is based on an original invention concept for a **swarm-robotics park maintenance system**. See [docs/patent_concept.md](docs/patent_concept.md) for the full technical invention statement.
+This is an original invention. See [docs/patent_concept.md](docs/patent_concept.md) for the full technical invention statement and patent claims.
 
 ---
 
-## 👨‍💻 Built by
+## 👨‍💻 Inventor
 
-**Jyotheeswar Reddy** — [GitHub](https://github.com/jyotheeswar012-max) · [LinkedIn](https://linkedin.com/in/a-jyotheeswar-reddy)
+**A. Jyotheeswar Reddy** — [GitHub](https://github.com/jyotheeswar012-max) · [LinkedIn](https://linkedin.com/in/a-jyotheeswar-reddy) · Mumbai, India 🇮🇳
 
-> 100% designed, developed, and deployed by me.
+> 100% my original idea, designed and developed by me.

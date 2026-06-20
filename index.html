@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🌿 Swarm Park Guardian — AJR's Invention</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0d1117; color: #e6edf3; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(13,17,23,0.92); backdrop-filter: blur(12px);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 48px; border-bottom: 1px solid #21262d;
+    }
+    nav .logo { font-size: 1.2rem; font-weight: 700; color: #2ea043; letter-spacing: 1px; }
+    nav ul { list-style: none; display: flex; gap: 32px; }
+    nav ul li a { color: #8b949e; text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    nav ul li a:hover { color: #e6edf3; }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center;
+      padding: 120px 24px 60px;
+      background: radial-gradient(ellipse at 50% 40%, rgba(46,160,67,0.12) 0%, transparent 70%);
+    }
+    #hero .tag {
+      background: rgba(46,160,67,0.15); border: 1px solid #2ea043;
+      color: #2ea043; padding: 6px 16px; border-radius: 20px;
+      font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px;
+    }
+    #hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem); font-weight: 800; line-height: 1.1;
+      background: linear-gradient(135deg, #e6edf3 30%, #2ea043 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 24px;
+    }
+    #hero p {
+      max-width: 680px; font-size: 1.15rem; color: #8b949e; line-height: 1.8; margin-bottom: 40px;
+    }
+    .btn-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      background: #2ea043; color: #fff; padding: 14px 32px;
+      border-radius: 8px; text-decoration: none; font-weight: 600;
+      transition: background 0.2s; font-size: 0.95rem;
+    }
+    .btn-primary:hover { background: #3fb950; }
+    .btn-outline {
+      border: 1px solid #30363d; color: #e6edf3; padding: 14px 32px;
+      border-radius: 8px; text-decoration: none; font-weight: 600;
+      transition: all 0.2s; font-size: 0.95rem;
+    }
+    .btn-outline:hover { border-color: #2ea043; color: #2ea043; }
+
+    /* CANVAS */
+    #canvas-wrap {
+      width: 100%; max-width: 900px; margin: 0 auto 80px;
+      border-radius: 16px; overflow: hidden;
+      border: 1px solid #21262d;
+      box-shadow: 0 0 60px rgba(46,160,67,0.15);
+    }
+    canvas { display: block; width: 100%; background: #0d1117; }
+
+    /* SECTIONS */
+    section { padding: 100px 48px; max-width: 1100px; margin: 0 auto; }
+    section h2 {
+      font-size: 2.2rem; font-weight: 700; margin-bottom: 16px;
+      color: #e6edf3;
+    }
+    section h2 span { color: #2ea043; }
+    .sub { color: #8b949e; font-size: 1rem; margin-bottom: 56px; max-width: 600px; }
+
+    /* DRONES GRID */
+    .drones-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+    .drone-card {
+      background: #161b22; border: 1px solid #21262d; border-radius: 12px;
+      padding: 28px 24px; transition: border-color 0.2s, transform 0.2s;
+    }
+    .drone-card:hover { border-color: #2ea043; transform: translateY(-4px); }
+    .drone-card .icon { font-size: 2.2rem; margin-bottom: 12px; }
+    .drone-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 8px; }
+    .drone-card p { font-size: 0.85rem; color: #8b949e; line-height: 1.6; }
+
+    /* HOW IT WORKS */
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step { display: flex; gap: 32px; align-items: flex-start; padding: 32px 0; border-bottom: 1px solid #21262d; }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      min-width: 48px; height: 48px; border-radius: 50%;
+      background: rgba(46,160,67,0.15); border: 1px solid #2ea043;
+      color: #2ea043; font-weight: 700; font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .step-body h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 8px; }
+    .step-body p { color: #8b949e; font-size: 0.9rem; line-height: 1.7; }
+
+    /* TECH STACK */
+    .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; }
+    .tech-pill {
+      background: #161b22; border: 1px solid #21262d; border-radius: 8px;
+      padding: 16px 20px; font-size: 0.88rem; color: #8b949e;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .tech-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: #2ea043; flex-shrink: 0; }
+
+    /* PATENT */
+    .patent-box {
+      background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
+      border: 1px solid #2ea043; border-radius: 16px; padding: 48px;
+    }
+    .patent-box h3 { font-size: 1.3rem; margin-bottom: 16px; color: #2ea043; }
+    .patent-box p { color: #8b949e; line-height: 1.8; margin-bottom: 16px; }
+    .claims { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 24px; }
+    .claims li {
+      display: flex; gap: 12px; align-items: flex-start;
+      background: rgba(46,160,67,0.06); padding: 14px 16px; border-radius: 8px;
+      font-size: 0.9rem; color: #c9d1d9;
+    }
+    .claims li span { color: #2ea043; font-weight: 700; font-size: 1rem; margin-top: 1px; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 48px 24px;
+      border-top: 1px solid #21262d; color: #8b949e; font-size: 0.85rem;
+    }
+    footer a { color: #2ea043; text-decoration: none; }
+
+    /* SCROLL FADE */
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">🌿 SWARM PARK GUARDIAN</div>
+  <ul>
+    <li><a href="#drones">Drones</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#tech">Tech</a></li>
+    <li><a href="#patent">Patent</a></li>
+    <li><a href="dashboard/app.py">Dashboard</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="tag">🏆 Original Invention by A. Jyotheeswar Reddy</div>
+  <h1>Autonomous Swarm<br/>Park Maintenance<br/>System</h1>
+  <p>
+    A fleet of AI-powered drones that autonomously patrol, detect waste, trim grass,
+    water plants, and clean water bodies — coordinated by a central hub.
+    Every season. Zero human intervention.
+  </p>
+  <div class="btn-row">
+    <a href="#how" class="btn-primary">🚀 See How It Works</a>
+    <a href="#patent" class="btn-outline">📄 View Patent Concept</a>
+  </div>
+</section>
+
+<!-- LIVE 2D CANVAS SIMULATION -->
+<div id="canvas-wrap">
+  <canvas id="sim" height="420"></canvas>
+</div>
+
+<!-- DRONE ROLES -->
+<section id="drones">
+  <h2>Meet the <span>Swarm</span></h2>
+  <p class="sub">5 specialised drone types working as one coordinated unit.</p>
+  <div class="drones-grid fade-in">
+    <div class="drone-card">
+      <div class="icon">🔍</div>
+      <h3>Scout Drone</h3>
+      <p>Patrols all zones using YOLOv8 vision — detects debris, overgrown grass, and surface waste in real time.</p>
+    </div>
+    <div class="drone-card">
+      <div class="icon">🧹</div>
+      <h3>Cleaner Drone</h3>
+      <p>Collects dust, fallen branches, and litter. Transports waste back to the central hub via pipe docking.</p>
+    </div>
+    <div class="drone-card">
+      <div class="icon">✂️</div>
+      <h3>Trimmer Drone</h3>
+      <p>Detects and trims overgrown grass zones with precision blades — adaptive to grass height and density.</p>
+    </div>
+    <div class="drone-card">
+      <div class="icon">💧</div>
+      <h3>Waterer Drone</h3>
+      <p>Irrigates garden and lawn zones based on soil data. Cleans surface waste from water bodies.</p>
+    </div>
+    <div class="drone-card">
+      <div class="icon">🛡️</div>
+      <h3>Patrol Drone</h3>
+      <p>Night-time perimeter security with LED light-show formation. All-season adaptive operation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <h2>How It <span>Works</span></h2>
+  <p class="sub">One complete autonomous cycle — from detection to clean park.</p>
+  <div class="steps fade-in">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Scout & Detect</h3>
+        <p>Scout drones patrol all 5 park zones using YOLOv8 computer vision. They identify debris, grass growth, water waste, and fallen branches with 94%+ accuracy.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>PSO Task Assignment</h3>
+        <p>The central hub receives detections and runs Particle Swarm Optimization to assign the nearest available drone of the right role — zero conflicts, no collisions.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Execute & Collect</h3>
+        <p>Cleaner, Trimmer, and Waterer drones navigate to targets via computed waypoints. Waste is transported back to the hub through a pipe-docking system.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>Recharge & Repeat</h3>
+        <p>Low-battery drones autonomously return to hub for solar recharging. The cycle runs 24/7, across all seasons — rain, summer, and winter modes.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h3>Night Patrol + Light Show</h3>
+        <p>After dark, patrol drones switch to LED formation mode — securing the perimeter while creating a visual light display above the park.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="tech">
+  <h2>Tech <span>Stack</span></h2>
+  <p class="sub">Production-grade AI + robotics stack powering the system.</p>
+  <div class="tech-grid fade-in">
+    <div class="tech-pill"><span class="dot"></span>YOLOv8 Vision</div>
+    <div class="tech-pill"><span class="dot"></span>PSO Path Planning</div>
+    <div class="tech-pill"><span class="dot"></span>ROS 2 + Gazebo</div>
+    <div class="tech-pill"><span class="dot"></span>MAVLink / MAVSDK</div>
+    <div class="tech-pill"><span class="dot"></span>Python 3.11</div>
+    <div class="tech-pill"><span class="dot"></span>PX4 Autopilot</div>
+    <div class="tech-pill"><span class="dot"></span>OpenCV</div>
+    <div class="tech-pill"><span class="dot"></span>Streamlit Dashboard</div>
+    <div class="tech-pill"><span class="dot"></span>SQLite Logging</div>
+    <div class="tech-pill"><span class="dot"></span>Solar Charging Hub</div>
+    <div class="tech-pill"><span class="dot"></span>Pipe Waste System</div>
+    <div class="tech-pill"><span class="dot"></span>Edge Computing</div>
+  </div>
+</section>
+
+<!-- PATENT -->
+<section id="patent">
+  <h2>Patent <span>Concept</span></h2>
+  <p class="sub">An original invention filed under the inventor's name.</p>
+  <div class="patent-box fade-in">
+    <h3>Multi-Modal Swarm Drone Coordination Architecture for Selective Environmental Maintenance</h3>
+    <p>
+      This system represents a novel invention combining heterogeneous drone swarms, AI object detection,
+      PSO-based task delegation, and a centralised hub with pipe-based waste collection —
+      operating autonomously across all seasons with zero human intervention.
+    </p>
+    <p><strong style="color:#e6edf3">Inventor:</strong> A. Jyotheeswar Reddy &nbsp;|&nbsp;
+       <strong style="color:#e6edf3">Jurisdiction:</strong> India (IPO) &nbsp;|&nbsp;
+       <strong style="color:#e6edf3">Category:</strong> Robotics + AI Systems
+    </p>
+    <ul class="claims">
+      <li><span>01</span> Autonomous swarm coordination using heterogeneous drone roles (scout, cleaner, trimmer, waterer, patrol)</li>
+      <li><span>02</span> PSO-based real-time task assignment algorithm for collision-free multi-agent navigation</li>
+      <li><span>03</span> Hub-based centralised waste collection via pipe-docking architecture</li>
+      <li><span>04</span> AI vision layer (YOLOv8) for environmental object detection from drone-mounted cameras</li>
+      <li><span>05</span> All-season adaptive operation with night patrol and LED light-show formation mode</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>🌿 Swarm Park Guardian &mdash; An original invention by
+    <a href="https://github.com/jyotheeswar012-max">A. Jyotheeswar Reddy</a> &nbsp;·&nbsp;
+    <a href="https://linkedin.com/in/a-jyotheeswar-reddy">LinkedIn</a> &nbsp;·&nbsp;
+    <a href="https://github.com/jyotheeswar012-max/swarm-park-guardian">GitHub</a>
+  </p>
+  <p style="margin-top:8px">Built & deployed 100% by me &mdash; Mumbai, India 🇮🇳 &nbsp;·&nbsp; 2026</p>
+</footer>
+
+<!-- LIVE 2D DRONE SIMULATION -->
+<script>
+const canvas = document.getElementById('sim');
+const ctx    = canvas.getContext('2d');
+canvas.width = canvas.offsetWidth || 900;
+canvas.height = 420;
+
+const W = canvas.width, H = canvas.height;
+
+// Park zones
+const zones = [
+  { name:'North Lawn',    x:0,           y:0,      w:W*0.38, h:H*0.42, color:'rgba(46,160,67,0.18)' },
+  { name:'East Garden',   x:W*0.58,      y:0,      w:W*0.42, h:H*0.42, color:'rgba(63,185,80,0.18)' },
+  { name:'Central Plaza', x:W*0.38,      y:H*0.28, w:W*0.20, h:H*0.44, color:'rgba(139,148,158,0.18)' },
+  { name:'South Lawn',    x:0,           y:H*0.58, w:W*0.38, h:H*0.42, color:'rgba(46,160,67,0.18)' },
+  { name:'Pond Area',     x:W*0.58,      y:H*0.58, w:W*0.42, h:H*0.42, color:'rgba(88,166,255,0.18)' },
+];
+
+const HUB = { x: W*0.5, y: H*0.5 };
+
+// Drones
+const ROLES = [
+  { role:'Scout',   color:'#f0e04a', icon:'🔍' },
+  { role:'Cleaner', color:'#f0883e', icon:'🧹' },
+  { role:'Cleaner', color:'#f0883e', icon:'🧹' },
+  { role:'Trimmer', color:'#2ea043', icon:'✂️' },
+  { role:'Trimmer', color:'#2ea043', icon:'✂️' },
+  { role:'Waterer', color:'#58a6ff', icon:'💧' },
+  { role:'Patrol',  color:'#f85149', icon:'🛡️' },
+];
+
+const drones = ROLES.map((r, i) => ({
+  ...r, id: i+1,
+  x: HUB.x + Math.cos(i/ROLES.length*Math.PI*2)*60,
+  y: HUB.y + Math.sin(i/ROLES.length*Math.PI*2)*60,
+  tx: 0, ty: 0, battery: 85 + Math.random()*15,
+  trail: []
+}));
+
+function newTarget(d) {
+  const z = zones[Math.floor(Math.random()*zones.length)];
+  d.tx = z.x + Math.random()*z.w;
+  d.ty = z.y + Math.random()*z.h;
+}
+drones.forEach(newTarget);
+
+let tick = 0;
+
+function draw() {
+  ctx.clearRect(0,0,W,H);
+
+  // Background grid
+  ctx.strokeStyle = 'rgba(48,54,61,0.3)';
+  ctx.lineWidth = 1;
+  for(let x=0;x<W;x+=40){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+  for(let y=0;y<H;y+=40){ ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+
+  // Zones
+  zones.forEach(z => {
+    ctx.fillStyle = z.color;
+    ctx.strokeStyle = 'rgba(48,54,61,0.6)';
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.roundRect(z.x+2, z.y+2, z.w-4, z.h-4, 8); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = 'rgba(255,255,255,0.35)';
+    ctx.font = '11px monospace';
+    ctx.fillText(z.name, z.x+10, z.y+20);
+  });
+
+  // Hub pulse
+  const pulse = 0.5 + 0.5*Math.sin(tick*0.05);
+  ctx.beginPath(); ctx.arc(HUB.x, HUB.y, 22+pulse*8, 0, Math.PI*2);
+  ctx.fillStyle = `rgba(188,140,255,${0.08+pulse*0.08})`; ctx.fill();
+  ctx.beginPath(); ctx.arc(HUB.x, HUB.y, 16, 0, Math.PI*2);
+  ctx.fillStyle = '#bc8cff'; ctx.fill();
+  ctx.fillStyle = '#fff'; ctx.font = 'bold 10px monospace';
+  ctx.textAlign = 'center'; ctx.fillText('HUB', HUB.x, HUB.y+4);
+  ctx.textAlign = 'left';
+
+  // Move & draw drones
+  drones.forEach(d => {
+    const dx = d.tx - d.x, dy = d.ty - d.y;
+    const dist = Math.sqrt(dx*dx+dy*dy);
+    if(dist < 6) { newTarget(d); } else {
+      d.x += (dx/dist)*2.2;
+      d.y += (dy/dist)*2.2;
+    }
+    d.battery -= 0.008;
+    if(d.battery < 20) { d.tx = HUB.x; d.ty = HUB.y; }
+    if(dist < 6 && d.battery < 20) { d.battery = 95; }
+
+    d.trail.push({x:d.x, y:d.y});
+    if(d.trail.length > 18) d.trail.shift();
+
+    // Trail
+    for(let i=1;i<d.trail.length;i++){
+      ctx.beginPath();
+      ctx.moveTo(d.trail[i-1].x, d.trail[i-1].y);
+      ctx.lineTo(d.trail[i].x, d.trail[i].y);
+      ctx.strokeStyle = d.color + Math.floor((i/d.trail.length)*99).toString(16).padStart(2,'0');
+      ctx.lineWidth = 1.5; ctx.stroke();
+    }
+
+    // Drone dot
+    ctx.beginPath(); ctx.arc(d.x, d.y, 7, 0, Math.PI*2);
+    ctx.fillStyle = d.color; ctx.fill();
+    ctx.strokeStyle = '#0d1117'; ctx.lineWidth = 1.5; ctx.stroke();
+
+    // Label
+    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+    ctx.font = '9px monospace';
+    ctx.fillText(`D${d.id}`, d.x+9, d.y+4);
+
+    // Battery bar
+    const bw = 24, bh = 3;
+    ctx.fillStyle = '#21262d';
+    ctx.fillRect(d.x-bw/2, d.y+10, bw, bh);
+    ctx.fillStyle = d.battery > 50 ? '#2ea043' : d.battery > 25 ? '#e3b341' : '#f85149';
+    ctx.fillRect(d.x-bw/2, d.y+10, bw*(d.battery/100), bh);
+  });
+
+  // Tick counter
+  ctx.fillStyle = 'rgba(139,148,158,0.6)';
+  ctx.font = '10px monospace';
+  ctx.fillText(`TICK ${tick}  |  LIVE SIMULATION`, 12, H-10);
+
+  tick++;
+  requestAnimationFrame(draw);
+}
+draw();
+
+// Scroll fade
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

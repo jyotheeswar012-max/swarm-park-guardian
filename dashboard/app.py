@@ -23,7 +23,7 @@ body { background: #0d1117; color: #e6edf3; }
 """, unsafe_allow_html=True)
 
 st.title("🌿 Swarm Park Guardian — Mission Dashboard")
-st.caption("Autonomous multi-drone park maintenance simulation — Built by Jyotheeswar Reddy")
+st.caption("Autonomous multi-drone park maintenance simulation — Invented & built by A. Jyotheeswar Reddy")
 
 st.sidebar.header("⚙️ Simulation Config")
 ticks   = st.sidebar.slider("Simulation Ticks", 50, 500, 200)
