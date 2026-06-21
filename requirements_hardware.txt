@@ -1,0 +1,34 @@
+# Swarm Park Guardian — Real Hardware Dependencies
+# A. Jyotheeswar Reddy, Manipal University Jaipur, 2026
+#
+# Install on Raspberry Pi 4 (onboard drone) or Main Hub computer
+# For simulation/testing without hardware, use requirements.txt
+
+# Flight control — real MAVSDK for PX4/Pixhawk 6C
+mavsdk>=1.4.0
+
+# AI Vision — YOLOv8 (train custom model with park_guardian dataset)
+ultralytics>=8.0.0
+
+# OAK-D Pro W camera SDK
+depthai>=2.24.0
+
+# Raspberry Pi GPIO
+RPi.GPIO>=0.7.1
+
+# Image processing
+opencv-python>=4.9.0
+numpy>=1.26.0
+
+# Communication between drones and hub
+paho-mqtt>=2.0.0
+
+# Async runtime
+asyncio
+
+# Data logging
+pandas>=2.0.0
+
+# Dashboard (optional, for main hub monitor)
+streamlit>=1.35.0
+plotly>=5.20.0
