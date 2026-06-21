@@ -1,84 +1,90 @@
 <div align="center">
 
-# 🌿 Swarm Park Guardian
+<img src="https://img.shields.io/badge/Patent-Pending-gold?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Inventor-A.%20Jyotheeswar%20Reddy-green?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Institution-Manipal%20University%20Jaipur-blue?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Drone-DGCA%20Micro%20%3C2kg-orange?style=for-the-badge" />
 
-### Autonomous Multi-Drone Park Maintenance System
+# 🌿 Autonomous Modular Drone Swarm System
+### with Retractable Underground Hubs for Garden and Park Maintenance
 
-[![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)](https://python.org)
-[![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-red?logo=streamlit)](https://streamlit.io)
-[![YOLOv8](https://img.shields.io/badge/Vision-YOLOv8-purple)](https://ultralytics.com)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green)](LICENSE)
-[![Invention](https://img.shields.io/badge/Original-Invention-gold)](docs/patent_concept.md)
-[![Live](https://img.shields.io/badge/Live-Website-brightgreen)](https://jyotheeswar012-max.github.io/swarm-park-guardian)
-[![Built by Jyotheeswar](https://img.shields.io/badge/Built%20by-A.%20Jyotheeswar%20Reddy-orange)](https://github.com/jyotheeswar012-max)
+**[🌍 Live Website →](https://jyotheeswar012-max.github.io/swarm-park-guardian)**
 
-> **My original invention.** A fleet of AI-powered drones that autonomously patrol, detect waste, trim grass, water plants, and clean water bodies in a park — coordinated by a central hub. Every season. Zero human intervention.
-
-**[🌍 Live Website →](https://jyotheeswar012-max.github.io/swarm-park-guardian)** &nbsp;|
-**[📊 Live Dashboard →](https://swarm-park-guardian.streamlit.app)** &nbsp;|
-**[📄 Patent Concept →](docs/patent_concept.md)**
+> **This is my original invention**, conceived and developed by me — A. Jyotheeswar Reddy,  
+> Student, Dept. of Data Science & Engineering, Manipal University Jaipur, 2026.
 
 </div>
 
 ---
 
-## 💡 The Idea
+## 💡 The Invention
 
-I came up with this idea as a solution to one real problem: **parks need constant maintenance but human labour is expensive, inconsistent, and unavailable at night.**
+A swarm of AI-powered drones that operate **1 AM – 7 AM**, autonomously performing:
+- 🌬️ Dust clearing (20cm hover, onboard blower)
+- 🍃 Leaf collection (leaf basket module)
+- ✂️ Grass cutting (blade module, AI skips flowers)
+- 🌿 Debris removal (robotic arm module)
+- 💧 Water body cleaning (nano-mesh net module)
+- 🚿 Irrigation (couples to in-ground drip sockets — no water tank)
 
-My solution: a swarm of specialised drones that work as a single unit — scouting, cleaning, trimming, watering, and patrolling — all coordinated by a central hub that handles recharging and waste collection through a pipe system.
-
----
-
-## 🤖 Drone Fleet
-
-| Drone | Role |
-|---|---|
-| 🔍 Scout | Patrols all zones, detects debris/grass/waste via YOLOv8 |
-| 🧹 Cleaner | Collects dust, branches, litter — pipes waste to hub |
-| ✂️ Trimmer | Detects and trims overgrown grass with precision |
-| 💧 Waterer | Irrigates gardens, cleans water body surfaces |
-| 🛡️ Patrol | Night-time perimeter + LED light-show formation |
+Drones and hubs **disappear underground** during the day. Zero visual pollution. Zero human involvement.
 
 ---
 
 ## 🏗️ System Architecture
 
 ```
-Park Zones
-    ↓
-Scout Drones (YOLOv8 detection)
-    ↓
-Central Hub (PSO task assignment)
-    ↓
-Cleaner / Trimmer / Waterer Drones
-    ↓
-Hub (waste collection via pipes + solar recharge)
-    ↓
-Streamlit Dashboard (real-time monitoring)
+Main Hub (solar + LiFePO4 + central server)
+    ↓  48V DC buried cables
+Sub-Hubs @ every 150–200m  ← retract underground via scissor lift
+    ├── 4-bay tool carousel
+    ├── Battery swap robot (<60 sec)
+    ├── Dual-bay landing pad
+    └── 200W regenerative waste blower
+    ↓  150mm PVC buried pipeline
+Central Waste Collection Point
 ```
 
 ---
 
-## 🚀 Quick Start
+## 🤖 Drone Specs (Verified <2 kg)
 
-```bash
-git clone https://github.com/jyotheeswar012-max/swarm-park-guardian
-cd swarm-park-guardian
-pip install -r requirements.txt
-streamlit run dashboard/app.py
-```
+| Component | Spec | Weight |
+|---|---|---|
+| Carbon fibre frame | 45cm motor-to-motor | 350g |
+| Motors (4×) | Brushless DC | 200g |
+| Battery | 5,000 mAh 6S LiPo, 22.2V, 111Wh | 650g |
+| AI Vision | OAK-D Pro W + FLIR Lepton 3.5 | 150g |
+| AI Processor | RPi 4 + Google Coral Edge TPU | 100g |
+| Supercapacitor | 50F 16V — 42 sec emergency | 80g |
+| **TOTAL WITH TOOL** | | **1,985g ✓** |
 
 ---
 
-## 🔬 Research & Patent
+## 🔬 Novelty (7 Key Features)
 
-This is an original invention. See [docs/patent_concept.md](docs/patent_concept.md) for the full technical invention statement and patent claims.
+1. Hub-based modular tool swapping — drone carries only one tool at a time
+2. Hierarchical hidden hubs that retract underground during daytime
+3. Underground waste pipe with 200W regenerative blower
+4. Drone supercapacitor backup for emergency controlled descent
+5. Nearest-drone task allocation (greedy nearest-neighbour algorithm)
+6. Waterless irrigation — couples to in-ground drip sockets
+7. AI flower-avoidance during grass cutting (YOLOv8 at 15-20 FPS)
+
+---
+
+## 📄 Patent
+
+Filed as Invention Disclosure at **Manipal University Jaipur, 2026**.  
+Meets novelty, inventive step, and industrial applicability under **Section 2(1)(j), Indian Patents Act 1970**.
 
 ---
 
 ## 👨‍💻 Inventor
 
-**A. Jyotheeswar Reddy** — [GitHub](https://github.com/jyotheeswar012-max) · [LinkedIn](https://linkedin.com/in/a-jyotheeswar-reddy) · Mumbai, India 🇮🇳
+**A. Jyotheeswar Reddy**  
+Dept. of Data Science & Engineering  
+Manipal University Jaipur, Rajasthan 303007 🇮🇳  
+📧 Jyotheeswar0802@gmail.com | 📱 8712700720
 
-> 100% my original idea, designed and developed by me.
+> 100% original idea. Not based on any existing product or prior art.
